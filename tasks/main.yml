@@ -22,6 +22,13 @@
     dest=/etc/sv/{{runit_name}}/log/run
     mode=0755
 
+- name: Log to central loghost
+  template:
+    src=log-config.j2
+    dest=/etc/sv/{{runit_name}}/log/config
+    mode=0644
+  when: rsyslog_central_host_port is defined
+
 - name: Link service
   file:
     src=/etc/sv/{{runit_name}}
