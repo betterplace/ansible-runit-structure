@@ -26,7 +26,7 @@
 - name: Log to central loghost
   template:
     src=log-config.j2
-    dest=/etc/sv/{{runit_name}}/log/config
+    dest=/var/log/{{runit_name}}/config
     mode=0644
   when: rsyslog_central_host_port is defined
   notify: restart {{runit_name}}/log
