@@ -1,0 +1,9 @@
+---
+- name: reload {{runit_name}}
+  command: sv reload {{runit_name}}
+- name: restart {{runit_name}}
+  command: sv restart {{runit_name}}
+- name: reload {{runit_name}}/log
+  command: sv reload {{runit_name}}/log
+- name: restart {{runit_name}}/log
+  command: sv restart {{runit_name}}/log
