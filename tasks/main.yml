@@ -28,7 +28,7 @@
     src=log-config.j2
     dest=/var/log/{{runit_name}}/config
     mode=0644
-  when: (rsyslog_remote is defined and rsyslog_remote != False) rsyslog_central_host_port is defined
+  when: (rsyslog_remote is not defined or rsyslog_remote != False) and rsyslog_central_host_port is defined
   notify: restart {{runit_name}}/log
 
 - name: Disable logging to central loghost
