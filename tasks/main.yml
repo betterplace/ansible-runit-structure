@@ -16,6 +16,12 @@
     - "/etc/sv/{{runit_name}}/supervise"
     - "/etc/sv/{{runit_name}}/log/supervise"
 
+- name: Create log dir
+  file:
+    path="/var/log/{{runit_name}}"
+    mode=0755
+    state=directory
+
 - name: Create runit log run script
   template:
     src=log-run.j2
