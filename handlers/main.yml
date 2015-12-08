@@ -5,6 +5,8 @@
   command: sv restart {{runit_name}}
 - name: down-up {{runit_name}}
   shell: sv down {{runit_name}}; sv up {{runit_name}}
+- name: disable {{runit_name}}
+  shell: rm -f /etc/service/{{runit_name}}
 - name: reload {{runit_name}}/log
   command: sv reload {{runit_name}}/log
 - name: restart {{runit_name}}/log
