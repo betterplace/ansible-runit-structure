@@ -3,8 +3,8 @@
   command: sv reload {{runit_name}}
 - name: restart {{runit_name}}
   command: sv restart {{runit_name}}
-- name: down-up {{runit_name}}
-  shell: sv down {{runit_name}}; sv up {{runit_name}}
+- name: term-up {{runit_name}}
+  shell: sv term {{runit_name}}; sv up {{runit_name}}
 - name: disable {{runit_name}}
   shell: rm -f /etc/service/{{runit_name}}
 - name: reload {{runit_name}}/log
