@@ -1,13 +1,13 @@
 ---
 - name: reload {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && sv reload {{runit_name}}
+  shell: test -e /etc/service/{{runit_name}} && sv -w 30 reload {{runit_name}}
 - name: restart {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && sv restart {{runit_name}}
+  shell: test -e /etc/service/{{runit_name}} && sv -w 30 restart {{runit_name}}
 - name: term-up {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && sv term {{runit_name}}; sv up {{runit_name}}
+  shell: test -e /etc/service/{{runit_name}} && sv -w 30 term {{runit_name}}; sv up {{runit_name}}
 - name: disable {{runit_name}}
   shell: test -e /etc/service/{{runit_name}} && rm -f /etc/service/{{runit_name}}
 - name: reload {{runit_name}}/log
-  shell: test -e /etc/service/{{runit_name}}/log && sv reload {{runit_name}}/log
+  shell: test -e /etc/service/{{runit_name}}/log && sv -w 30 reload {{runit_name}}/log
 - name: restart {{runit_name}}/log
-  shell: test -e /etc/service/{{runit_name}}/log && sv restart {{runit_name}}/log
+  shell: test -e /etc/service/{{runit_name}}/log && sv -w 30 restart {{runit_name}}/log
