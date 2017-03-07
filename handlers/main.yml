@@ -1,13 +1,13 @@
 ---
 - name: reload {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && sv -w 30 reload {{runit_name}}
+  shell: if [ -e /etc/service/{{runit_name}}/supervise/ok ]; then sv -w 30 reload {{runit_name}}; fi
 - name: restart {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && sv -w 30 restart {{runit_name}}
+  shell: if [ -e /etc/service/{{runit_name}}/supervise/ok ]; then sv -w 30 restart {{runit_name}}; fi
 - name: term-up {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && sv -w 30 term {{runit_name}}; sv up {{runit_name}}
+  shell: if [ -e /etc/service/{{runit_name}}/supervise/ok ]; then sv -w 30 term {{runit_name}}; sv -w 30 up {{runit_name}}; fi
 - name: disable {{runit_name}}
-  shell: test -e /etc/service/{{runit_name}} && rm -f /etc/service/{{runit_name}}
+  shell: if [ -e /etc/service/{{runit_name}} ]; then rm -f /etc/service/{{runit_name}}; fi
 - name: reload {{runit_name}}/log
-  shell: test -e /etc/service/{{runit_name}}/log && sv -w 30 reload {{runit_name}}/log
+  shell: if [ -e /etc/service/{{runit_name}}/log/supervise/ok ]; then sv -w 30 reload {{runit_name}}/log; fi
 - name: restart {{runit_name}}/log
-  shell: test -e /etc/service/{{runit_name}}/log && sv -w 30 restart {{runit_name}}/log
+  shell: if [ -e /etc/service/{{runit_name}}/log/supervise/ok ]; then sv -w 30 restart {{runit_name}}/log; fi
